@@ -54,19 +54,25 @@ int version_trois(/*params*/)
     code_variant3(/* params */);
 }
 ```
-
+{{< admonition type=note title="Remarque" open=true >}}
 Ca ressemble de loin aux problèmes que résout la programmation générique mais nous en parlerons plus tard.
 Pour le moment la raison d'existence des multiples fonctions n'est pas à cause d'un type mais de la volonté d'avoir un comportement différent.
+{{< /admonition >}}
+
 
 ## Exemple
 Tout de suite un exemple pour avoir en tête un repère.
 
+{{< admonition type=example title="Exemple" open=true >}}
 Imaginons un jeu où un personnage a une position et souhaite avancer, on imagine pour le moment 3 moyens de locomotion :
 - Ses jambes
 - Son vélo
 - Sa voiture
 
 De plus, chaque fois qu'un personnage se déplace, il doit attendre avant d'arriver, ce temps d'attente étant constant selon le véhicule.
+{{< /admonition >}}
+
+
 
 On se retrouve donc avec cette mise en application
 ```c
@@ -243,9 +249,11 @@ se_deplacer(j,pos, &depl_pieds)
 
 L'utilisation de l'opérateur adresse `&` est optionnel pour les ptr de fonctions mais  
 
+{{< admonition type=warning title="Attention !" open=true >}}
 A ne surtout pas confondre avec `void (*deplacement)()` qui annonce prendre n'importe quelle fonction tant que le type de retour est respecté (ici void), c'est une sorte de ptr de fonction passe-partout.
 
 La différence entre les deux dans notre cas est qu'un passage d'une fonction incorrecte (par exemple prenant un `int` en entrée) résultera en un .... **warning** (sur gcc 10.2 avec -Wall -Wextra) avec `void (*deplacement)(void)`, en revanche, au niveau de l'appel par le pointeur de fonction c'est une erreur de compilation (du type trop d'argument). Tandis qu'aucun warning pour `void (*deplacement)()`, c'est le but.
+{{< /admonition >}}
 
 Désormais chaque fois que l'on voudra ajouter des moyens de locmotions, on écrira une fonction supplémentaire dans `locomotion.c` (et dans le .h correspondant mais j'en parle pas ici car ce n'est pas l'objectif).
 A chaque appel, de `se_deplacer()`, on passera une fonction de déplacement comme celles ci-dessus.
@@ -268,12 +276,12 @@ On est obligé d'avoir une disjonction de cas selon le type de `valeur` car on n
 
 Dans notre exemple, nous avions imaginé ce besoin d'avoir plusieurs versions, ici ce n'est pas de l'imagination mais une obligation, la méthode des pointeurs de fonction est donc aussi préconisé.
 
+{{< admonition type=note title="Remarque" open=true >}}
 Pour finir, j'ai parlé précédemment de la programmation générique, la programmation générique avec une implémentation réfiée comme en C++ ou en C# écrit pour nous ce code qui varie mais pour chaque type utilisé.
 Nous nous contentons d'écrire le comportement de chaque type à l'aide de l'héritage / l'implémentation d'interface (comme en C# ou traits en Rust) pour définir des fonctions au nom commun mais au comportement différent pour chaque type (cf. surcharge d'opérateur).
 
-Cette approche est dite 
-1. Type safe à partir du moment où l'on peut **contraindre** ces génériques mais on en parlera dans un autre article.
-
+Cette approche est dite type safe à partir du moment où l'on peut **contraindre** ces génériques mais on en parlera dans un autre article.
+{{< /admonition >}}
 # Résumé
 1. Une variable est une donnée, une fonction/procédure est un traitement conditionnel sur cette donnée.
 2. Il faut toujours chercher à factoriser le plus possible son code pour des raisons d'ergonomie, de maintenance mais aussi d'efficacité (un code moins long est plus facile à auditer et à stocker).
