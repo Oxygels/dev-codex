@@ -142,7 +142,7 @@ enableEmoji = true
           # title shown in home page (HTML format is supported)
           title = "/dev/codex - L'appareil de connaissance"
           # subtitle shown in home page (HTML format is supported)
-          subtitle = "Nouvelles technologies, protocoles, bas niveau, réseau, .NET"
+          subtitle = "Nouvelles technologies, protocoles, Linux, Windows, bas niveau, réseau, .NET"
           # whether to use typeit animation for subtitle
           typeit = true
           # whether to show social links

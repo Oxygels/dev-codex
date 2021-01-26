@@ -65,6 +65,7 @@ Imaginons un jeu où un personnage a une position et souhaite avancer, on imagin
 - Ses jambes
 - Son vélo
 - Sa voiture
+
 De plus, chaque fois qu'un personnage se déplace, il doit attendre avant d'arriver, ce temps d'attente étant constant selon le véhicule.
 
 On se retrouve donc avec cette mise en application
