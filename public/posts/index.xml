@@ -1,0 +1,14 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Tous Posts - /dev/codex</title>
+        <link>https://blog.oxygel.fr/posts/</link>
+        <description>Tous Posts | /dev/codex</description>
+        <generator>Hugo -- gohugo.io</generator><language>fr</language><lastBuildDate>Sun, 24 Jan 2021 22:16:49 &#43;0100</lastBuildDate><atom:link href="https://blog.oxygel.fr/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>Pointeurs de fonction</title>
+    <link>https://blog.oxygel.fr/posts/ptr_fonctions/</link>
+    <pubDate>Sun, 24 Jan 2021 22:16:49 &#43;0100</pubDate>
+    <author>Oxygel.fr</author>
+    <guid>https://blog.oxygel.fr/posts/ptr_fonctions/</guid>
+    <description><![CDATA[eazeaz]]></description>
+</item></channel>
+</rss>
