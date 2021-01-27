@@ -107,44 +107,44 @@ void attendre(int duree) { /* ... */ }
 // ====DEPLACEMENTS====
 
 /**
- * Deplace un joueur vers une position en voiture
- * @param[in,out] duree La durée à attendre en millisecondes
+ * Déplace un joueur vers une position en voiture
+ * @param[in,out] j     Le joueur à déplacer
  * @param[in]     arr   La position d'arrivée
  */
-void se_deplacer_en_voiture(Joueur j, Position arr) { 
+void se_deplacer_en_voiture(Joueur* j, Position arr) { 
     envoyer_message(j,POISSON_ROUGE);
     
     // verifier_plein();
     // verifier_pneus();
     attendre(5);
 
-    j.pos = arr;
+    j->pos = arr;
  }
 
 /**
- * Deplace un joueur vers une position à vélo
- * @param[in,out] duree La durée à attendre en millisecondes
+ * Déplace un joueur vers une position à vélo
+ * @param[in,out] j     Le joueur à déplacer
  * @param[in]     arr   La position d'arrivée
  */
-void se_deplacer_en_velo(Joueur j, Position arr) {
+void se_deplacer_en_velo(Joueur* j, Position arr) {
     envoyer_message(j, POISSON_ROUGE);
     
     // verifier_pneus();
     attendre(15);
 
-    j.pos = arr;
+    j->pos = arr;
  }
 
 /**
- * Deplace un joueur vers une position à pieds
- * @param[in,out] duree La durée à attendre en millisecondes
+ * Déplace un joueur vers une position à pieds
+ * @param[in,out] j     Le joueur à déplacer
  * @param[in]     arr   La position d'arrivée
  */
-void se_deplacer_a_pieds(Joueur j, Position arr) {
+void se_deplacer_a_pieds(Joueur j*, Position arr) {
     envoyer_message(j, POISSON_ROUGE);
     attendre(30);
 
-    j.pos = arr;
+    j->pos = arr;
 }
 ```
 Le code qui varie ne dépend pas uniquement d'une donnée, ça aurait été le cas si il fallait **juste** attendre plus longtemps entre chaque véhicule. Dans ce cas on aurait juste eu une fonction se déplacer avec un paramètre `int duree` mais ça aurait été trop facile.
@@ -160,7 +160,7 @@ Cela donnerait :
 ```c
 typedef enum { Pieds, Velo, Voiture } Locomotion;
 
-void se_deplacer(Joueur j, Position arr, Locomotion moyen) { 
+void se_deplacer(Joueur* j, Position arr, Locomotion moyen) { 
     envoyer_message(j,POISSON_ROUGE);
     switch(moyen) {
         case Pieds:
@@ -182,7 +182,7 @@ void se_deplacer(Joueur j, Position arr, Locomotion moyen) {
         default:
             exit(1); // dans stdlib.h
     }
-    j.pos = arr;
+    j->pos = arr;
 }
 ```
 
@@ -274,10 +274,10 @@ On est obligé d'avoir une disjonction de cas selon le type de `valeur` car on n
 Dans notre exemple, nous avions imaginé ce besoin d'avoir plusieurs versions, ici ce n'est pas de l'imagination mais une obligation, la méthode des pointeurs de fonction est donc aussi préconisé.
 
 {{< admonition type=note title="Remarque" open=true >}}
-Pour finir, j'ai parlé précédemment de la programmation générique, la programmation générique avec une implémentation réfiée comme en C++ ou en C# écrit pour nous ce code qui varie mais pour chaque type utilisé.
+Pour finir, j'ai parlé précédemment de la programmation générique, la programmation générique avec une [implémentation réifiée](https://medium.com/@darrenwedgwood/java-generics-explained-c18a929fcd68#:~:text=Reified%20Generics%20is%20a%20generics,to%20Java%27s%20Type%2DErased%20Generics.) comme en C++ ou en C# écrit pour nous ce code qui varie mais pour chaque type utilisé.
 Nous nous contentons d'écrire le comportement de chaque type à l'aide de l'héritage / l'implémentation d'interface (comme en C# ou traits en Rust) pour définir des fonctions au nom commun mais au comportement différent pour chaque type [(cf. surcharge d'opérateur)](https://en.cppreference.com/w/cpp/language/operators).
 
-Cette approche est dite type safe à partir du moment où l'on peut **contraindre** ces génériques mais on en parlera dans un autre article.
+Cette approche est dite "type safe" à partir du moment où l'on peut **contraindre** ces génériques mais on en parlera dans un autre article.
 {{< /admonition >}}
 
 {{< admonition type=abstract title="Résumé" open=true >}}
